@@ -1,0 +1,53 @@
+main.jsx
+
+import React from "react";
+import ReactDom from "react-dom";
+import {Breadcrumb, Row, Col} from "antd";
+// react 路由
+import {Router, Route, hashHistory} from 'react-router';
+
+// 注意本地导入组件要添加 ./
+import Home from "./home";
+import About from "./about";
+import Product from "./product";
+import Service from "./Service";
+import Login from "./Login";
+// 创建路由
+var MyRouter = React.createClass({
+    render() {
+        return (
+            <div>
+                <Row>
+                    <Col span={10} offset={7}>
+                        <Breadcrumb>
+                            <Breadcrumb.Item>
+                                <a href="#/">登录</a>
+                            </Breadcrumb.Item>
+                            <Breadcrumb.Item>
+                                <a href="#/home">首页</a>
+                            </Breadcrumb.Item>
+                            <Breadcrumb.Item>
+                                <a href="#/about">关于我们</a>
+                            </Breadcrumb.Item>
+                            <Breadcrumb.Item>
+                                <a href="#/service">服务</a>
+                            </Breadcrumb.Item>
+                            <Breadcrumb.Item>
+                                <a href="#/product">产品</a>
+                            </Breadcrumb.Item>
+                        </Breadcrumb>
+                        <Router history={hashHistory}>
+                            <Route path="/" component={Login} />
+                            <Route path="/home" component={Home}/>
+                            <Route path="/about" component={About}/>
+                            <Route path="/service" component={Service}/>
+                            <Route path="/product" component={Product}/>
+                        </Router>
+                    </Col>
+                </Row>
+            </div>
+        )
+    }
+});
+// 渲染登录组件
+ReactDom.render(<MyRouter />, document.getElementById("main"));
